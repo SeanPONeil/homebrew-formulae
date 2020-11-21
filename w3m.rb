@@ -47,6 +47,7 @@ class W3m < Formula
     system "./configure", "--prefix=#{prefix}",
                           "--mandir=#{man}",
                           "--with-termlib=ncurses",
+                          "--install-w3mimgdisplay",
                           "--with-imagelib=imlib2",
                           "--with-ssl=#{Formula["openssl@1.1"].opt_prefix}"
     system "make"
