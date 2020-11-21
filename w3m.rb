@@ -31,8 +31,6 @@ class W3m < Formula
     sha256 "809a34cb2c14b98827cfe9f18008b0ebc545e359c5f8c1279e71948ac336bdd1" => :sierra
   end
 
-  fails_with :clang
-
   depends_on "pkg-config" => :build
   depends_on "bdw-gc"
   depends_on "imlib2"
@@ -42,17 +40,12 @@ class W3m < Formula
   uses_from_macos "zlib"
 
   def install
-    ENV["PATH"]="/usr/local/opt/llvm/bin:$PATH"
-    ENV["LDFLAGS"]="-L/usr/local/opt/llvm/lib"
-    ENV["CPPFLAGS"]="-I/usr/local/opt/llvm/include"
     system "./configure", "--prefix=#{prefix}",
                           "--mandir=#{man}",
                           "--with-termlib=ncurses",
-                          "--with-libiconv-prefix=#{prefix}",
-                          "--with-libintl-prefix=#{prefix}",
                           "--with-imagelib=imlib2",
                           "--with-ssl=#{Formula["openssl@1.1"].opt_prefix}"
-    system "make"
+    system "make", "CC=#{ENV.cc}"
     system "make", "install"
   end
 
