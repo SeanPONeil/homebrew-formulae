@@ -46,8 +46,8 @@ class W3m < Formula
   def install
     system "./configure", "--prefix=#{prefix}",
                           "--mandir=#{man}",
-                          "--with-termlib=ncurses",
-                          "--install-w3mimgdisplay",
+                          "--enable-image",
+                          "--with-termlib=ncurses,terminfo",
                           "--with-imagelib=imlib2",
                           "--with-ssl=#{Formula["openssl@1.1"].opt_prefix}"
     system "make"
