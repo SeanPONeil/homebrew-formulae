@@ -47,6 +47,7 @@ class W3m < Formula
     system "./configure", "--prefix=#{prefix}",
                           "--mandir=#{man}",
                           "--enable-image",
+                          "--with-gnu-ld",
                           "--with-termlib=ncurses,terminfo",
                           "--with-imagelib=imlib2",
                           "--with-ssl=#{Formula["openssl@1.1"].opt_prefix}"
